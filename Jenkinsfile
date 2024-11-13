@@ -1,5 +1,6 @@
 pipeline {
 
+  
   agent any
   stages {
     stage("build"){
@@ -20,6 +21,15 @@ pipeline {
         echo 'Starting to deploy phase'
       }
     } 
+  }
+  
+  post {
+    always {
+      
+    }
+    failure{
+      
+    }
   }
 
 }
