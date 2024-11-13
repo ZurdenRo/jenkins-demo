@@ -1,10 +1,13 @@
 pipeline {
 
   agent any
+  parameters {
+        string(name: 'VERSION', value: '7.0', description: 'id of version of my app')
+        choice(name: 'MORE_VERSION', choices: ['1.1', '1.2', '3.0'], description: 'ids of my app able')
+        booleanParam(name: 'executeTest', defaultValue: true, description: 'boolean when i run the test cases')
+  }
   tools {
-    string(name: 'VERSION', value: '7.0', description: 'id of version of my app')
-    choice(name: 'MORE_VERSION', choices: ['1.1', '1.2', '3.0'], description: 'ids of my app able')
-    booleanParam(name: 'executeTest', defaultValue: true, description: 'boolean when i run the test cases')
+    gradle 'gradle-8.11'
   }
   environment {
     NEW_VERSION = '1.0.0'
