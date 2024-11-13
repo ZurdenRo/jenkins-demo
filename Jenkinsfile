@@ -15,6 +15,11 @@ pipeline {
   }
 
   stages {
+    stage("init"){
+        steps {
+            echo 'Hello, this is the firs step on the pipeline.'
+        }
+    }
     stage("build"){
         steps {
             echo 'Starting to build phase'
