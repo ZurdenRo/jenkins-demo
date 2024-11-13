@@ -16,7 +16,7 @@ pipeline {
             }
         }  
         steps {
-            echo 'Starting to test phase'
+            echo 'Starting to test phase and only run in dev branch'
         }
     }
     
