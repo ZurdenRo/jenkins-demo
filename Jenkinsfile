@@ -2,7 +2,7 @@ pipeline {
 
   agent any
   tools {
-    'gradle-8.11'
+    gradle 'gradle-8.11'
   }
   environment {
     NEW_VERSION = '1.0.0'
