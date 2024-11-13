@@ -1,6 +1,9 @@
 pipeline {
 
   agent any
+  tools {
+    'gradle-8.11'
+  }
   environment {
     NEW_VERSION = '1.0.0'
     SERVER_CREDENTIAL = credentials('server-credential')
@@ -28,11 +31,6 @@ pipeline {
      stage("deploy"){
         steps {
             echo 'Starting to deploy phase'
-            withCredentials([
-                usernamePassword(credentials: 'server-credential', usernameVariable: USER, passwordVariable: PWD)
-            ]){
-                sh "some script to execute... ${env.USER}"
-            }
         }
     } 
   }
