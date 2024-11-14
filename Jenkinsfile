@@ -3,7 +3,6 @@ pipeline {
   agent any
   parameters {
         string(name: 'VERSION', defaultValue: '7.0', description: 'id of version of my app')
-        choice(name: 'MORE_VERSION', choices: ['1.1', '1.2', '3.0'], description: 'ids of my app able')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'boolean when i run the test cases')
   }
   tools {
@@ -18,12 +17,18 @@ pipeline {
     stage("init"){
         steps {
             echo 'Hello, this is the firs step on the pipeline.'
+            script {
+                gv = load "script.groovy"
+            }
         }
     }
     stage("build"){
         steps {
             echo 'Starting to build phase'
             echo "Building ${NEW_VERSION} now"
+            script {
+                gv.buildApp()
+            }
         }
     }
     
@@ -35,14 +40,19 @@ pipeline {
         }  
         steps {
             echo 'Starting to test phase with the var: executeTest always true'
+            script {
+                gv.testApp()
+            }
         }
     }
     
      stage("deploy"){
         steps {
             echo 'Starting to deploy phase'
-            echo "deploying my app:${params.MORE_VERSION}"
             echo "deploying my app:${params.VERSION}"
+            script {
+                gv.deployApp()
+            }
         }
     } 
   }
